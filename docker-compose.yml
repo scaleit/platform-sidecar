@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+    sda-test-app:
+            image: scaleit/spsc-identity-manager:demo1.0.0
+            build: ./Domain Software/Test App
+            # no port declaration because the app should be isolated
+
+    spsc-identity-mananger:
+        image: scaleit/spsc-identity-manager:demo1.0.0
+        build: ./Platform Sidecars/Identity-Manager
+        ports:
+            - 1001:1001
+
+    spsc-license-mananger:
+        image: scaleit/spsc-license-manager:demo1.0.0
+        build: ./Platform Sidecars/License-Manager
+        ports:
+            - 1002:1002
+
+    spsc-router:
+        image: scaleit/spsc-router:demo1.0.0
+        build: ./Platform Sidecars/Router
+        ports:
+            - 80:1000

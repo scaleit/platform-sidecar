@@ -8,6 +8,7 @@ url = require "url"
 port = 1000
 auth_server = "localhost:1001"
 license_server = "localhost:1002"
+app_server = "localhost:1003"
 globalTimeout = 15000 # ms
 
 read = (s, cb) ->
@@ -81,11 +82,22 @@ app.get '/', auth, $ (req, res) ->
 	catch err
 		console.log err.stack
 		res.status(200).send 'License server error'
-		return false
-	if data != "ok"
-		res.status(200).send 'You do not passed the license check'
 		return
-	res.status(200).send 'You passed'
+	if data != "ok"
+		res.status(200).send 'You did not pass the license check'
+		return
+	try
+		opts = url.parse "http://#{app_server}/"
+		opts.headers =
+			'my-header': 'xxdsf'
+			jo: 3244
+		res2 = yield $ http_get, opts
+		data = yield $ read, res2
+	catch err
+		console.log err.stack
+		res.status(200).send 'App server error'
+		return
+	res.status(200).send data.toString()
 	# TODO: reverse proxy to the app server
 
 

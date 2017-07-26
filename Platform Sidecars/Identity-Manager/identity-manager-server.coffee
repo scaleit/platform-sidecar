@@ -8,7 +8,7 @@ user_list =
 
 app.get '/', (req, res) ->
 	{user, password} = req.query
-	if user_list[user] == password
+	if user_list[user]? && user_list[user] == password
 		res.status(200).send JSON.stringify "ok"
 	else
 		res.status(200).send JSON.stringify "wrong user or password"

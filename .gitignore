@@ -1,1 +1,4 @@
-/node_modules
+/Domain Software/Test App/node_modules
+/Platform Sidecars/License-Manager/node_modules
+/Platform Sidecars/Identity-Manager/node_modules
+/Platform Sidecars/Router/node_modules
