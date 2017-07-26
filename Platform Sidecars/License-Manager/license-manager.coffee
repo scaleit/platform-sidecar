@@ -2,7 +2,7 @@ app = do require 'express'
 
 port = 1002
 app_list = # stores multiple usernames per appname
-	default: ['peter']
+	'testapp': ['peter']
 
 app.get '/', (req, res) ->
 	{app, user} = req.query

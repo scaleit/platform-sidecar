@@ -77,7 +77,7 @@ auth = basicAuth
 		return data == "ok"
 
 app.get '/', auth, $ (req, res) ->
-	app = "default"
+	app = "testapp"
 	{user} = req.auth
 	try
 		res2 = yield $ http_get, "http://#{license_server}/?#{querystring.stringify {user, app}}"
