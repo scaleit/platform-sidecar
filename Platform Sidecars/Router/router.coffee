@@ -83,7 +83,7 @@ app.get '/', auth, $ (req, res) ->
 		res.status(200).send 'License server error'
 		return false
 	if data != "ok"
-		res.status(200).send 'You do not passed the license check'
+		res.status(200).send 'You did not pass the license check'
 		return
 	res.status(200).send 'You passed'
 	# TODO: reverse proxy to the app server
