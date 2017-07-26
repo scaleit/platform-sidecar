@@ -6,7 +6,7 @@ app_list = # stores multiple usernames per appname
 
 app.get '/', (req, res) ->
 	{app, user} = req.query
-	if user in app_list[app]
+	if app_list[app]? && user in app_list[app]
 		res.status(200).send JSON.stringify "ok"
 	else
 		res.status(200).send JSON.stringify "user not licensed"
